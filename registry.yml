@@ -5,7 +5,7 @@ services:
       - ${TAILSCALE_IP}:5000:5000
     restart: unless-stopped
     volumes:
-      registry-data:/var/lib/registry
+      - registry-data:/var/lib/registry
 
 volumes:
   registry-data:
