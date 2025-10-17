@@ -1,0 +1,12 @@
+services:
+  yt-dlp:
+    build: ./yt-dlp
+    devices:
+      - /dev/dri/renderD128
+    volumes:
+      - media:/downloads
+      - yt-dlp-config:/config
+
+volumes:
+  media:
+  yt-dlp-config:
