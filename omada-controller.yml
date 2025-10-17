@@ -21,7 +21,7 @@ services:
       - SHOW_MONGODB_LOGS=false
       - SSL_CERT_NAME=tls.crt
       - SSL_KEY_NAME=tls.key
-      - TZ=America/Los_Angeles
+      - TZ=${TZ}
     image: mbentley/omada-controller:beta-6.0
     network_mode: host
     # ports:
