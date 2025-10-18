@@ -1,11 +1,17 @@
 services:
   registry:
+    environment:
+      # Use the 'tailscale cert ${REGISTRY_DOMAIN}'
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/${REGISTRY_DOMAIN}.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/${REGISTRY_DOMAIN}.key
     image: registry:3
     ports:
       - ${TAILSCALE_IP}:5000:5000
     restart: unless-stopped
     volumes:
       - registry-data:/var/lib/registry
+      - registry-certs:/certs
 
 volumes:
+  registry-certs:
   registry-data:
