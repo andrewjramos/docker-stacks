@@ -1,0 +1,45 @@
+services:
+  beszel:
+    image: henrygd/beszel
+    ports:
+      - ${TAILSCALE_IP}:8090:8090
+    restart: unless-stopped
+    volumes:
+      - beszel_data:/beszel_data
+
+  gotify:
+    image: gotify/server
+    environment:
+      - TZ=${TZ}
+    ports:
+      - ${TAILSCALE_IP}:8080:80
+    restart: unless-stopped
+    volumes:
+      - gotify_data:/app/data
+
+  inbucket:
+    environment:
+      - TZ=${TZ}
+    image: inbucket/inbucket
+    ports:
+      - ${TAILSCALE_IP}:2500:2500
+      - ${TAILSCALE_IP}:9000:9000
+    restart: unless-stopped
+    volumes:
+      - inbucket-config:/config
+      - inbucket-storage:/storage
+      
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    volumes:
+      - uptime-kuma-data:/app/data
+    ports:
+      - ${TAILSCALE_IP}:3001:3001
+    restart: unless-stopped
+
+volumes:
+  beszel_data:
+  gotify_data:
+  inbucket-config:
+  inbucket-storage:
+  uptime-kuma-data:
