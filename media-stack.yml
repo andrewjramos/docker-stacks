@@ -20,7 +20,7 @@ services:
       - TZ=${TZ}
     volumes:
       - ersatztv-config:/config
-      - ersatztv-transcode:/transcode
+      - ${TRANSCODE_DIR}/ersatztv:/transcode
       - media:/mnt/user/media
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
