@@ -8,5 +8,13 @@ services:
       - yt-dlp-config:/config
 
 volumes:
+  # NFS Volumes
   media:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${MEDIA_HOST},rw,hard,nolock,nfsvers=4
+      device: ":${MEDIA_HOST_DIR}"
+
+  # Local Volumes
   yt-dlp-config:
