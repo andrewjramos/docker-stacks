@@ -30,7 +30,7 @@ services:
       - inbucket-storage:/storage
       
   uptime-kuma:
-    image: louislam/uptime-kuma:1
+    image: louislam/uptime-kuma:latest
     volumes:
       - uptime-kuma-data:/app/data
     ports:
